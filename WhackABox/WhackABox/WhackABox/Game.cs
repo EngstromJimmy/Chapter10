@@ -40,6 +40,16 @@ namespace WhackABox
             Renderer.ShadowMapSize *= 4;
         }
 
+        protected override void Start()
+        {
+            scene = new Scene(Context);
+            var octree = scene.CreateComponent<Octree>();
+            InitializeCamera();
+            InitializeLights();
+            InitializeRenderer();
+            InitializeAR();
+        }
+
         protected void CreateSubPlane(PlaneNode planeNode)
         {
             var node = planeNode.CreateChild("subplane");
