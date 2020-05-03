@@ -9,9 +9,6 @@ namespace WhackABox.Droid
         { }
         private ARCoreComponent arCore;
 
-
-
-
         private void SetPositionAndRotation(Com.Google.AR.Core.Plane plane, PlaneNode node)
         {
             node.ExtentX = plane.ExtentX;
@@ -52,7 +49,6 @@ namespace WhackABox.Droid
             config.SetLightEstimationMode(Config.LightEstimationMode.AmbientIntensity);
             config.SetUpdateMode(Config.UpdateMode.LatestCameraImage);
         }
-
         protected override void InitializeAR()
         {
             arCore = scene.CreateComponent<ARCoreComponent>();
@@ -60,6 +56,5 @@ namespace WhackABox.Droid
             arCore.ConfigRequested += OnConfigRequested;
             arCore.Run();
         }
-
     }
 }

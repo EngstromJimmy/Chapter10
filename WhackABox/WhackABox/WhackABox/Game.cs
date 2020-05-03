@@ -7,11 +7,18 @@ namespace WhackABox
     public abstract class Game : Application
     {
         protected Scene scene;
+        private Camera camera;
         public Game(ApplicationOptions options) : base(options)
         {
         }
 
         protected abstract void InitializeAR();
+
+        private void InitializeCamera()
+        {
+            var cameraNode = scene.CreateChild("Camera");
+            camera = cameraNode.CreateComponent<Camera>();
+        }
 
         protected void CreateSubPlane(PlaneNode planeNode)
         {
