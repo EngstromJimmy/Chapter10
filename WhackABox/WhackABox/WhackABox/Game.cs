@@ -27,5 +27,7 @@ namespace WhackABox
             planeNode.ExtentZ);
             subPlaneNode.Position = position;
         }
+
+        protected PlaneNode FindNodeByPlaneId(string planeId) =>scene.Children.OfType<PlaneNode>().FirstOrDefault(e => e.PlaneId == planeId);
     }
 }
