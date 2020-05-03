@@ -10,7 +10,8 @@ namespace WhackABox
         private Camera camera;
         private Viewport viewport;
         private static Random random = new Random();
-
+        private float newBoxTtl;
+        private readonly float newBoxIntervalInSeconds = 2;
 
         public Game(ApplicationOptions options) : base(options)
         {
@@ -76,6 +77,20 @@ namespace WhackABox
             boxNode.Position = new Vector3(x, 0.1f, z) + subPlaneNode.Position;
             var box = boxNode.CreateComponent<Box>();
             box.Color = Color.Blue;
+        }
+
+        protected override void OnUpdate(float timeStep)
+        {
+            base.OnUpdate(timeStep);
+            newBoxTtl -= timeStep;
+            if (newBoxTtl < 0)
+            {
+                foreach (var node in scene.Children.OfType<PlaneNode>())
+                {
+                    AddBox(node);
+                }
+                newBoxTtl += newBoxIntervalInSeconds;
+            }
         }
 
         protected PlaneNode FindNodeByPlaneId(string planeId) =>scene.Children.OfType<PlaneNode>().FirstOrDefault(e => e.PlaneId == planeId);
