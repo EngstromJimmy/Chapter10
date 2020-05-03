@@ -9,6 +9,7 @@ namespace WhackABox
         protected Scene scene;
         private Camera camera;
         private Viewport viewport;
+        private static Random random = new Random();
 
 
         public Game(ApplicationOptions options) : base(options)
@@ -63,6 +64,18 @@ namespace WhackABox
             subPlaneNode.Scale = new Vector3(planeNode.ExtentX, 0.05f,
             planeNode.ExtentZ);
             subPlaneNode.Position = position;
+        }
+
+        private void AddBox(PlaneNode planeNode)
+        {
+            var subPlaneNode = planeNode.GetChild("subplane");
+            var boxNode = planeNode.CreateChild("Box");
+            boxNode.SetScale(0.1f);
+            var x = planeNode.ExtentX * (float)(random.NextDouble() -0.5f);
+            var z = planeNode.ExtentZ * (float)(random.NextDouble() -0.5f);
+            boxNode.Position = new Vector3(x, 0.1f, z) + subPlaneNode.Position;
+            var box = boxNode.CreateComponent<Box>();
+            box.Color = Color.Blue;
         }
 
         protected PlaneNode FindNodeByPlaneId(string planeId) =>scene.Children.OfType<PlaneNode>().FirstOrDefault(e => e.PlaneId == planeId);
