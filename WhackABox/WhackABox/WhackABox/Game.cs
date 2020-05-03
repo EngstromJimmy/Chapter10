@@ -6,7 +6,7 @@ namespace WhackABox
 {
     public abstract class Game : Application
     {
-        private Scene scene;
+        protected Scene scene;
         public Game(ApplicationOptions options) : base(options)
         {
         }
