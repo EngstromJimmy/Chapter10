@@ -16,6 +16,7 @@ namespace WhackABox
         public MainPage()
         {
             InitializeComponent();
+            MessagingCenter.Subscribe<Game, GameStats>(this,"stats_updated", StatsUpdated);
         }
         private void StatsUpdated(Game sender, GameStats stats)
         {
