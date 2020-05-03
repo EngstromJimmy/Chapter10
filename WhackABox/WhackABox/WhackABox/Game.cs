@@ -97,6 +97,21 @@ namespace WhackABox
             }
         }
 
+        private void DetermineHit(float x, float y)
+        {
+            var cameraRay = camera.GetScreenRay(x, y);
+            var result = scene.GetComponent<Octree>
+            ().RaycastSingle(cameraRay);
+            if (result?.Node?.Name?.StartsWith("Box") == true)
+            {
+                var node = result?.Node;
+                if (node.Components.OfType<Death>().Any())
+                {
+                    return;
+                }
+                node.CreateComponent<Death>();
+            }
+        }
         protected PlaneNode FindNodeByPlaneId(string planeId) =>scene.Children.OfType<PlaneNode>().FirstOrDefault(e => e.PlaneId == planeId);
     }
 }
