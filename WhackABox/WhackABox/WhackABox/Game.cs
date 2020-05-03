@@ -122,6 +122,25 @@ namespace WhackABox
             DetermineHit(x, y);
         }
 
+        private void SendStats()
+        {
+            var planes = scene.Children.OfType<PlaneNode>();
+            var boxCount = 0;
+            foreach (var plane in planes)
+            {
+                boxCount += plane.Children.Count(e => e.Name == "Box");
+            }
+            var stats = new GameStats()
+            {
+                NumberOfBoxes = boxCount,
+                NumberOfPlanes = planes.Count()
+            };
+            Xamarin.Forms.Device.BeginInvokeOnMainThread(() =>
+            {
+                Xamarin.Forms.MessagingCenter.Send(this, "stats_updated",
+                stats);
+            });
+        }
         protected PlaneNode FindNodeByPlaneId(string planeId) =>scene.Children.OfType<PlaneNode>().FirstOrDefault(e => e.PlaneId == planeId);
     }
 }
