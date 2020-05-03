@@ -6,6 +6,8 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Urho.Droid;
+using Xamarin.Forms;
 
 namespace WhackABox.Droid
 {
@@ -29,5 +31,34 @@ namespace WhackABox.Droid
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
+        protected override void OnResume()
+        {
+            base.OnResume();
+            UrhoSurface.OnResume();
+
+
+            MessagingCenter.Send(this, "OnResume");
+        }
+        protected override void OnPause()
+        {
+            UrhoSurface.OnPause();
+            base.OnPause();
+        }
+        protected override void OnDestroy()
+        {
+            UrhoSurface.OnDestroy();
+            base.OnDestroy();
+        }
+        public override void OnBackPressed()
+        {
+            UrhoSurface.OnDestroy();
+            Finish();
+        }
+        public override void OnLowMemory()
+        {
+            UrhoSurface.OnLowMemory();
+            base.OnLowMemory();
+        }
+
     }
 }
