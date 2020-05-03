@@ -12,5 +12,13 @@ namespace WhackABox
         }
 
         protected abstract void InitializeAR();
+
+        protected void CreateSubPlane(PlaneNode planeNode)
+        {
+            var node = planeNode.CreateChild("subplane");
+            node.Position = new Vector3(0, 0.05f, 0);
+            var box = node.CreateComponent<Box>();
+            box.Color = Color.FromHex("#22ff0000");
+        }
     }
 }
