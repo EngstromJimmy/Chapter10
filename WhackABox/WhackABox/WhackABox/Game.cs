@@ -45,6 +45,8 @@ namespace WhackABox
         protected override void Start()
         {
             scene = new Scene(Context);
+            scene.NodeAdded += (e) => SendStats();
+            scene.NodeRemoved += (e) => SendStats();
             var octree = scene.CreateComponent<Octree>();
             InitializeCamera();
             InitializeLights();
