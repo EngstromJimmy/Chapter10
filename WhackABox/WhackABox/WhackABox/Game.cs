@@ -112,6 +112,13 @@ namespace WhackABox
                 node.CreateComponent<Death>();
             }
         }
+        private void OnTouchBegin(TouchBeginEventArgs e)
+        {
+            var x = (float)e.X / Graphics.Width;
+            var y = (float)e.Y / Graphics.Height;
+            DetermineHit(x, y);
+        }
+
         protected PlaneNode FindNodeByPlaneId(string planeId) =>scene.Children.OfType<PlaneNode>().FirstOrDefault(e => e.PlaneId == planeId);
     }
 }
