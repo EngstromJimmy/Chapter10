@@ -20,5 +20,12 @@ namespace WhackABox
             var box = node.CreateComponent<Box>();
             box.Color = Color.FromHex("#22ff0000");
         }
+        protected void UpdateSubPlane(PlaneNode planeNode, Vector3 position)
+        {
+            var subPlaneNode = planeNode.GetChild("subplane");
+            subPlaneNode.Scale = new Vector3(planeNode.ExtentX, 0.05f,
+            planeNode.ExtentZ);
+            subPlaneNode.Position = position;
+        }
     }
 }
