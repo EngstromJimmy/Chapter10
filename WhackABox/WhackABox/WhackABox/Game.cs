@@ -29,6 +29,17 @@ namespace WhackABox
             camera = cameraNode.CreateComponent<Camera>();
         }
 
+        private void InitializeLights()
+        {
+            var lightNode = camera.Node.CreateChild();
+            lightNode.SetDirection(new Vector3(1f, -1.0f, 1f));
+            var light = lightNode.CreateComponent<Light>();
+            light.Range = 10;
+            light.LightType = LightType.Directional;
+            light.CastShadows = true;
+            Renderer.ShadowMapSize *= 4;
+        }
+
         protected void CreateSubPlane(PlaneNode planeNode)
         {
             var node = planeNode.CreateChild("subplane");
