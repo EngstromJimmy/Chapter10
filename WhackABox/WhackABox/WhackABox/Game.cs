@@ -49,6 +49,9 @@ namespace WhackABox
             InitializeCamera();
             InitializeLights();
             InitializeRenderer();
+
+            Input.TouchBegin += OnTouchBegin;
+
             InitializeAR();
         }
 
