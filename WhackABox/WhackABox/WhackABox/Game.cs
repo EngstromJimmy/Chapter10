@@ -8,11 +8,20 @@ namespace WhackABox
     {
         protected Scene scene;
         private Camera camera;
+        private Viewport viewport;
+
+
         public Game(ApplicationOptions options) : base(options)
         {
         }
 
         protected abstract void InitializeAR();
+
+        private void InitializeRenderer()
+        {
+            viewport = new Viewport(Context, scene, camera, null);
+            Renderer.SetViewport(0, viewport);
+        }
 
         private void InitializeCamera()
         {
