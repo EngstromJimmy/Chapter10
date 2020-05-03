@@ -77,6 +77,10 @@ namespace WhackABox
             boxNode.Position = new Vector3(x, 0.1f, z) + subPlaneNode.Position;
             var box = boxNode.CreateComponent<Box>();
             box.Color = Color.Blue;
+
+            var rotationSpeed = new Vector3(10.0f, 20.0f, 30.0f);
+            var rotator = new Rotator() { RotationSpeed = rotationSpeed };
+            boxNode.AddComponent(rotator);
         }
 
         protected override void OnUpdate(float timeStep)
