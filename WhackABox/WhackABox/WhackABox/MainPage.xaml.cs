@@ -17,5 +17,10 @@ namespace WhackABox
         {
             InitializeComponent();
         }
+        private void StatsUpdated(Game sender, GameStats stats)
+        {
+            boxCountLabel.Text = stats.NumberOfBoxes.ToString();
+            planeCountLabel.Text = stats.NumberOfPlanes.ToString();
+        }
     }
 }
